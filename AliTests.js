@@ -200,6 +200,14 @@ console.log(average(data));
 
 
 // question 2: return an array of all the users who have the following substring in their _id '2b'
+function checkSubstring(data){
+  let arr = [];
+  data.forEach(person => {
+    person._id.includes('2b') ? arr.push(person) : '';
+  });
+  return arr;
+}
+console.log(checkSubstring(data));
 
 
 // question 3: return an array of all the users who have at least one of the following substrings in their _id ['2b','4a'];
