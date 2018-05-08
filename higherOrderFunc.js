@@ -1,15 +1,12 @@
-/*
-function repeat(fn, n) {
 
+function repeat(fn, n) {
 	for (let i = 0; i < n; i++) {
 		fn();
 	}
 }
-
 function hello() {
 	console.log('Hello world');
 }
-
 function goodbye() {
 	console.log('Goodbye world');
 }
@@ -17,13 +14,13 @@ function goodbye() {
 repeat(hello, 5);
 repeat(goodbye, 5);
 
-// Return only names that begin with 'R'
+//Return only names that begin with 'R'
 const myNames = ['Rich', 'Joe', 'Bhaumik', 'Ray'];
+// const filteredNames = myNames.filter(name => {
+// 	 return name[0] === 'R';
+//  });
 
-const filteredNames = filter(myNames, function(name) {
-    // This is a "predicate function" - it's a function that only returns a boolean
-    return name[0] === 'R';
-});
+const filteredNames = filter(myNames, name =>  name[0] === 'R');
 
 //console.log(filteredNames) // => ['Rich', 'Ray']
 
@@ -40,33 +37,28 @@ function filter(arr,fn) {
 	// }
 	// return newArray;
 
+//********************************************************************* 
 
+function hazardWarningCreator(typeOfWarning) {
 
-// function hazardWarningCreator(typeOfWarning) {
+	let warningCounter = 0;
 
-// 	let warningCounter = 0;
+	return function(location) {
+		warningCounter++;
+		const plural = warningCounter > 1 ? 's' : '';
+		console.log(`DANGER! There is a ${typeOfWarning} hazard at ${location}!`);
+		console.log(`The ${typeOfWarning} hazard alert has triggered ${warningCounter} time${plural} today`);
+	}
+}
 
-// 	return function(location) {
-// 		warningCounter++;
-// 		console.log(`DANGER! There is a ${typeOfWarning} hazard at ${location}!`);
-// 		if (warningCounter <= 1) {
-// 			console.log(`The ${typeOfWarning} hazard alert has triggered ${warningCounter} time today!`);
-// 		}
-// 		else {
-// 			console.log(`The ${typeOfWarning} hazard alert has triggered ${warningCounter} times today!`);
-// 		}
+const rocksWarning = hazardWarningCreator('Rocks on the Road');
+const deerWarning = hazardWarningCreator('Deer crossing');
+const slideWarning = hazardWarningCreator('Road Slide ahead');
 
-// 	}
-// }
-
-// const rocksWarning = hazardWarningCreator('Rocks on the Road');
-// const deerWarning = hazardWarningCreator('Deer crossing');
-// const slideWarning = hazardWarningCreator('Road Slide ahead');
-
-// rocksWarning('Seattle');
-// rocksWarning('Seattle');
-// deerWarning('San Fransico');
-// slideWarning('Portland');
+rocksWarning('Seattle');
+rocksWarning('Seattle');
+deerWarning('San Fransico');
+slideWarning('Portland');
 
 let movements = [[0, 0], [0, 5], [-1, -3], [-3, 1], [2, -4], [3, 2]];
 
@@ -74,39 +66,27 @@ let positiveMovements = movements.filter(movement => {
 	if(movement[0] >= 0 && movement[1] >= 0)
 		return movement;
 });
-//console.log(positiveMovements);
-let steps = [];
-steps.push(positiveMovements.map(eachSetOfSteps => {
-	return eachSetOfSteps[0] + eachSetOfSteps[1];
-}));
-
+console.log(positiveMovements);
+let steps = movements.map(eachSetOfSteps => {
+	return Math.abs(eachSetOfSteps[0]) + Math.abs(eachSetOfSteps[1]);
+});
 
 positiveMovements.forEach(setOfMovements => {
 	console.log(`Number of steps in ${setOfMovements} is  ${setOfMovements[0] + setOfMovements[1]}`);
 });
-
-*/
+//********************************************************************* 
 
 let str = 'noggin oreo the moon time tele steed his tent apollo her lives though shoo tofu budapest';
 
 function decodeSentence(string) {
-
-	let arrayOfWords = string.split(' ');
-
-	let newSentence = arrayOfWords.reduce((word, sentence) => {
-		
-		if (word.length === 3) {
-			return sentence + ' ';
-		} 
-		else {
-			//return sentence + word.indexOf(-1).toUpperCase();
-		}
-		
-	}, []);
-
-	return newSentence.join();
+	return string.split(' ').reduce((acc, word) => {		
+		return word.length === 3 ?  acc + ' ' : acc +  word[word.length -1].toUpperCase();
+		if (word.length === 3)
+			 return acc + ' ';			 		
+		else
+			return acc +  word[word.length -1].toUpperCase();		
+	}, '');	
 }
-
 console.log(decodeSentence(str));
 
 
