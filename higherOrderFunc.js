@@ -42,30 +42,51 @@ function filter(arr,fn) {
 
 */
 
-function hazardWarningCreator(typeOfWarning) {
+// function hazardWarningCreator(typeOfWarning) {
 
-	let warningCounter = 0;
+// 	let warningCounter = 0;
 
-	return function(location) {
-		warningCounter++;
-		console.log(`DANGER! There is a ${typeOfWarning} hazard at ${location}!`);
-		if (warningCounter <= 1) {
-			console.log(`The ${typeOfWarning} hazard alert has triggered ${warningCounter} time today!`);
-		}
-		else {
-			console.log(`The ${typeOfWarning} hazard alert has triggered ${warningCounter} times today!`);
-		}
+// 	return function(location) {
+// 		warningCounter++;
+// 		console.log(`DANGER! There is a ${typeOfWarning} hazard at ${location}!`);
+// 		if (warningCounter <= 1) {
+// 			console.log(`The ${typeOfWarning} hazard alert has triggered ${warningCounter} time today!`);
+// 		}
+// 		else {
+// 			console.log(`The ${typeOfWarning} hazard alert has triggered ${warningCounter} times today!`);
+// 		}
 
-	}
-}
+// 	}
+// }
 
-const rocksWarning = hazardWarningCreator('Rocks on the Road');
-const deerWarning = hazardWarningCreator('Deer crossing');
-const slideWarning = hazardWarningCreator('Road Slide ahead');
+// const rocksWarning = hazardWarningCreator('Rocks on the Road');
+// const deerWarning = hazardWarningCreator('Deer crossing');
+// const slideWarning = hazardWarningCreator('Road Slide ahead');
 
-rocksWarning('Seattle');
-deerWarning('San Fransico');
-slideWarning('Portland');
+// rocksWarning('Seattle');
+// rocksWarning('Seattle');
+// deerWarning('San Fransico');
+// slideWarning('Portland');
+
+let movements = [[0, 0], [0, 5], [-1, -3], [-3, 1], [2, -4], [3, 2]];
+
+let positiveMovements = movements.filter(movement => {
+	if(movement[0] >= 0 && movement[1] >= 0)
+		return movement;
+});
+//console.log(positiveMovements);
+let steps = [];
+steps.push(positiveMovements.map(eachSetOfSteps => {
+	return eachSetOfSteps[0] + eachSetOfSteps[1];
+}));
+
+
+positiveMovements.forEach(setOfMovements => {
+	console.log(`Number of steps in ${setOfMovements} is  ${setOfMovements[0] + setOfMovements[1]}`);
+});
+
+
+
 
 
 
