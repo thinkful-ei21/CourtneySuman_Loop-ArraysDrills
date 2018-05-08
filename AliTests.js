@@ -207,11 +207,28 @@ function checkSubstring(data,str){
   });
   return arr;
 }
-console.log(checkSubstring(data,'2b'));
+//console.log(checkSubstring(data,'2b'));
 
 
 // question 3: return an array of all the users who have at least one of the following substrings in their _id ['2b','4a'];
+function doubleCheckSubstring(data) {
+  let users = [];
 
+  users.push(checkSubstring(data, '2b'));
+  users.push(checkSubstring(data, '4a'));
+
+  return users;
+}
+
+console.log(doubleCheckSubstring(data));
 
 
 // question 4: return an array of all the users who have a 'c' in their last name
+
+
+
+
+
+
+
+
