@@ -40,7 +40,7 @@ function filter(arr,fn) {
 	// }
 	// return newArray;
 
-*/
+
 
 // function hazardWarningCreator(typeOfWarning) {
 
@@ -84,6 +84,46 @@ steps.push(positiveMovements.map(eachSetOfSteps => {
 positiveMovements.forEach(setOfMovements => {
 	console.log(`Number of steps in ${setOfMovements} is  ${setOfMovements[0] + setOfMovements[1]}`);
 });
+
+*/
+
+let str = 'noggin oreo the moon time tele steed his tent apollo her lives though shoo tofu budapest';
+
+function decodeSentence(string) {
+
+	let arrayOfWords = string.split(' ');
+
+	let newSentence = arrayOfWords.reduce((word, sentence) => {
+		
+		if (word.length === 3) {
+			return sentence + ' ';
+		} 
+		else {
+			//return sentence + word.indexOf(-1).toUpperCase();
+		}
+		
+	}, []);
+
+	return newSentence.join();
+}
+
+console.log(decodeSentence(str));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
