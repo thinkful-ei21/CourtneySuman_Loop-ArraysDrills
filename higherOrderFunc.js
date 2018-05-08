@@ -1,3 +1,4 @@
+/*
 function repeat(fn, n) {
 
 	for (let i = 0; i < n; i++) {
@@ -38,4 +39,37 @@ function filter(arr,fn) {
 	// 		newArray.push(arr[i]);
 	// }
 	// return newArray;
+
+*/
+
+function hazardWarningCreator(typeOfWarning) {
+
+	let warningCounter = 0;
+
+	return function(location) {
+		warningCounter++;
+		console.log(`DANGER! There is a ${typeOfWarning} hazard at ${location}!`);
+		if (warningCounter <= 1) {
+			console.log(`The ${typeOfWarning} hazard alert has triggered ${warningCounter} time today!`);
+		}
+		else {
+			console.log(`The ${typeOfWarning} hazard alert has triggered ${warningCounter} times today!`);
+		}
+
+	}
+}
+
+const rocksWarning = hazardWarningCreator('Rocks on the Road');
+const deerWarning = hazardWarningCreator('Deer crossing');
+const slideWarning = hazardWarningCreator('Road Slide ahead');
+
+rocksWarning('Seattle');
+deerWarning('San Fransico');
+slideWarning('Portland');
+
+
+
+
+
+
 
