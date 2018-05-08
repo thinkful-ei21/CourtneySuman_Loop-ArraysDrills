@@ -187,6 +187,17 @@ const data = [
 
 // question 1: return the average age of all the users
 
+function average(people) {
+  let ages = [];
+
+  people.forEach(person => ages.push(person.age));
+  //console.log(ages);
+  let sum = ages.reduce((total, individual) => total + individual);
+  return sum/people.length;
+}
+
+console.log(average(data));
+
 
 // question 2: return an array of all the users who have the following substring in their _id '2b'
 
