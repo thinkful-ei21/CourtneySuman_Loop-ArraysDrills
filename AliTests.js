@@ -220,15 +220,22 @@ function doubleCheckSubstring(data) {
   return users;
 }
 
-console.log(doubleCheckSubstring(data));
+//console.log(doubleCheckSubstring(data));
 
 
 // question 4: return an array of all the users who have a 'c' in their last name
 
-
-
-
-
-
+function checkSubstringLastName(data){
+  let arr = [];
+  data.forEach(person => arr.push(returnCheckResult(person,'c')));
+  return arr.filter(ele => ele !== undefined);
+}
+function returnCheckResult(person,character){
+  let name =person.name.toUpperCase().split(' ')[1];
+  let char = character.toUpperCase();   
+  if(name.includes(character) || name.includes(char))
+    return person;
+}
+console.log(checkSubstringLastName(data));
 
 
