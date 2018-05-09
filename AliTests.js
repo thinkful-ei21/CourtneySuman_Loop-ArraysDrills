@@ -185,33 +185,84 @@ const data = [
   }
 ];
 
-// question 1: return the average age of all the users
+
+// QUESTION 1 ---------------------------------------------------------------------------------------
+// return the average age of all the users
+
+
+
+//Previous solution we did together
+
+/*
+function average(people) {
+  //let ages = [];
+
+  //people.forEach(person => ages.push(person.age));
+  //console.log(ages);
+  //let sum = ages.reduce((total, individual) => total + individual);
+  //return sum/people.length;
+
+}
+*/
+
+
 
 function average(people) {
-  let ages = [];
 
-  people.forEach(person => ages.push(person.age));
-  //console.log(ages);
-  let sum = ages.reduce((total, individual) => total + individual);
-  return sum/people.length;
+  return people.reduce((total, person) => total + person.age, 0) / people.length;
+
 }
 
 console.log(average(data));
 
 
-// question 2: return an array of all the users who have the following substring in their _id '2b'
+
+
+
+// QUESTION 2 -------------------------------------------------------------------------------------
+// return an array of all the users who have the following substring in their _id '2b'
+
+
+
+//Previous solution we did together
+ 
+/*
 function checkSubstring(data,str){
+  
   let arr = [];
   data.forEach(person => {
     person._id.includes(str) ? arr.push(person) : '';
   });
   return arr;
+
+}
+*/
+
+
+
+//Refactored solution
+
+function checkSubstring(data,str){
+
+  return data.filter(person => person._id.includes(str));
+
 }
 //console.log(checkSubstring(data,'2b'));
 
 
-// question 3: return an array of all the users who have at least one of the following substrings in their _id ['2b','4a'];
+
+
+
+// QUESTION 3 --------------------------------------------------------------------------------------
+// return an array of all the users who have at least one of the following substrings in their _id ['2b','4a']
+
+
+
+//Previous solution we did together
+ 
+/*
 function doubleCheckSubstring(data) {
+
   let users = [];
 
   users.push(checkSubstring(data, '2b'));
@@ -219,23 +270,82 @@ function doubleCheckSubstring(data) {
 
   return users;
 }
+*/
 
-//console.log(doubleCheckSubstring(data));
+
+//Refactored solution--Assumes that substrings only has 2 elements in its array, ex: ['2b', '4a']
+
+function doubleCheckSubstring(data, substrings) {
+
+  return data.filter(person => person._id.includes(substrings[0]) || person._id.includes(substrings[1]));
+
+}
 
 
-// question 4: return an array of all the users who have a 'c' in their last name
 
-function checkSubstringLastName(data){
+//Refactored solution--Assuming we don't know how many elements substring array contains
+
+function doubleCheckSubstring(data, substrings) {
+
+  return data.filter(person => substrings.find(string => person._id.includes(string)));
+
+}
+
+
+
+//Refactored solution from above but spaced out so it's a bit easier to read
+
+function doubleCheckSubstring(data, substrings) {
+
+  return data.filter(person => {
+    return substrings.find(string => {
+      return person._id.includes(string);
+    });
+  }); 
+
+}
+
+console.log(doubleCheckSubstring(data, ['2b','4a']));
+
+
+
+
+
+// QUESTION 4 ------------------------------------------------------------------------------------------
+// return an array of all the users who have a 'c' in their last name
+
+
+
+//Previous solution we did together
+
+/*
+function checkSubstringLastName(data, character){
+
   let arr = [];
   data.forEach(person => arr.push(returnCheckResult(person,'c')));
   return arr.filter(ele => ele !== undefined);
 }
+
 function returnCheckResult(person,character){
   let name =person.name.toUpperCase().split(' ')[1];
   let char = character.toUpperCase();   
   if(name.includes(character) || name.includes(char))
     return person;
+*/
+
+
+
+//Refactored solution
+
+function checkSubstringLastName(data, character){
+
+  return data.filter(person => {
+    return person.name.split(' ')[1].toUpperCase().includes(character.toUpperCase());
+  });
 }
-console.log(checkSubstringLastName(data));
+
+console.log(checkSubstringLastName(data, 'c'));
+
+
 
 
